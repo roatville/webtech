@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Image Gallery</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.thumbnails img {
+    width: 100px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    z-index: 1;
+}
+
+.lightbox img {
+    max-width: 80%;
+    max-height: 80%;
+    margin: auto;
+    display: block;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <div class="thumbnails">
+            <img src="images/about.png" alt="Thumbnail 1">
+            <img src="images/heroImage.jpeg" alt="Thumbnail 2">
+            <img src="images/portfolioImage1.jpg" alt="Thumbnail 3">
+            <img src="images/portfolioImage2.jpg" alt="Thumbnail 4">
+            <img src="images/portfolioImage3.jpg" alt="Thumbnail 5">
+            <img src="images/portfolioImage4.jpg" alt="Thumbnail 6">
+            <img src="images/Mohitanime.jpg" alt="Thumbnail 7">
+            <img src="images/Mohitanime2.jpg" alt="Thumbnail 8">
+            <img src="images/mohitanime3.jpg" alt="Thumbnail 9">
+        </div>
+        <div class="lightbox">
+            <span class="close">&times;</span>
+            <img src="" alt="" class="lightbox-image">
+        </div>
+    </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const thumbnails = document.querySelectorAll(".thumbnails img");
+    const lightbox = document.querySelector(".lightbox");
+    const lightboxImage = document.querySelector(".lightbox-image");
+    const closeButton = document.querySelector(".close");
+
+    // Open the lightbox with the clicked image
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener("click", function () {
+            lightboxImage.src = thumbnail.src;
+            lightbox.style.display = "block";
+        });
+    });
+
+    // Close the lightbox when the close button is clicked
+    closeButton.addEventListener("click", function () {
+        lightbox.style.display = "none";
+    });
+
+    // Close the lightbox when clicking outside the image
+    lightbox.addEventListener("click", function (e) {
+        if (e.target === lightbox) {
+            lightbox.style.display = "none";
+        }
+    });
+});
+
+
+    </script>
+</body>
+</html>
